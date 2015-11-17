@@ -7,7 +7,6 @@ from django.utils import formats
 
 
 class HomeNewVisitorTest(StaticLiveServerTestCase):
-
     def setUp(self):
         activate("en")
         self.browser = webdriver.Firefox()
@@ -58,4 +57,3 @@ class HomeNewVisitorTest(StaticLiveServerTestCase):
         ny = self.browser.find_element_by_id("time-ny").text
         self.assertNotEqual(ind, utc)
         self.assertNotIn(ny, [ind, utc])
-
