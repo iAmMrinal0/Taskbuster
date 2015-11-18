@@ -50,6 +50,11 @@ class TestGoogleLogin(StaticLiveServerTestCase):
         self.assertEqual(google_login.get_attribute("href"), self.live_server_url + "/accounts/google/login")
         google_login.click()
         self.user_login()
+        button_xpath = "//button[contains(.,'Sign Up »')]"
+        self.get_element_by_id("id_email").clear()
+        self.get_element_by_id("id_email").send_keys("asdfg@gmail.com")
+        signup = self.browser.find_element_by_xpath(button_xpath)
+        signup.click()
         with self.assertRaises(TimeoutException):
             self.get_element_by_id("google_login")
         google_logout = self.get_element_by_id("logout")
